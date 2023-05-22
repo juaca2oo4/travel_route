@@ -11,15 +11,25 @@ public class GraphMatriz<T> {
         vertices = new ArrayList<>();
     }
 
-    public void addVertex(Vertex<T> vertex) {
+
+    public boolean addVertex(Vertex<T> vertex) {
+        for(int i=0; i<vertices.size();i++){
+            if(vertices.get(i).getData().equals(vertex.getData())){
+                return false;
+            }
+        }
         vertices.add(vertex);
+        return true;
     }
 
     public void addEdge(Vertex<T> source, Vertex<T> destination, int cost, int distance) {
-        int sourceIndex = vertices.indexOf(source);
-        int destinationIndex = vertices.indexOf(destination);
-        adjacencyMatrix[sourceIndex][destinationIndex] = cost;
-        adjacencyMatrix[destinationIndex][sourceIndex] = distance;
+        if (!vertices.contains(source) || !vertices.contains(destination)) {
+            throw new IllegalArgumentException("Los vértices de origen y destino deben existir en el grafo.");
+        }
+            int sourceIndex = vertices.indexOf(source);
+            int destinationIndex = vertices.indexOf(destination);
+            adjacencyMatrix[sourceIndex][destinationIndex] = cost;
+            adjacencyMatrix[destinationIndex][sourceIndex] = distance;
     }
 
     public List<Vertex<T>> getVertices() {
@@ -29,6 +39,10 @@ public class GraphMatriz<T> {
     public List<Vertex<T>> dijkstra(Vertex<T> startVertex, Vertex<T> endVertex, String factor) {
         int start = vertices.indexOf(startVertex);
         int end = vertices.indexOf(endVertex);
+
+        if(start==-1 ||end==-1){
+            return null;
+        }
 
         int numVertices = vertices.size();
         int[] distances = new int[numVertices];
@@ -68,6 +82,9 @@ public class GraphMatriz<T> {
         int totalValue = 0;
         Set<Vertex<T>> visited = new HashSet<>();
         Queue<Vertex<T>> queue = new LinkedList<>();
+        if(path ==null){
+            return -1;
+        }
 
         queue.offer(path.get(0));
 
@@ -103,4 +120,17 @@ public class GraphMatriz<T> {
 
         return minVertex;
     }
+
+    public int[][] getAdjacencyMatrix() {
+        return adjacencyMatrix;
+    }
+
+    public void setAdjacencyMatrix(int[][] adjacencyMatrix) {
+        this.adjacencyMatrix = adjacencyMatrix;
+    }
+
+    public void setVertices(List<Vertex<T>> vertices) {
+        this.vertices = vertices;
+    }
+
 }

@@ -2,19 +2,19 @@ package test;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
-import model.*;
+import model.GraphMatriz;
+import model.Vertex;
 
-public class GraphListTest {
-
-    GraphList<String> graph;
+public class GraphMatrizTest {
+    GraphMatriz<String> graph;
 
     public void scenery() {
 
-        graph = new GraphList<>();
+        graph = new  GraphMatriz<>(7);
 
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
@@ -54,19 +54,19 @@ public class GraphListTest {
 
     @Test
     void testAddEdge() {
-        scenery();
+        graph = new  GraphMatriz<>(5);
         Vertex<String> v1 = new Vertex<>("H");
         Vertex<String> v2 = new Vertex<>("I");
         graph.addVertex(v1);
         graph.addVertex(v2);
         graph.addEdge(v1, v2, 20, 22);
 
-        assertTrue(graph.getAdjacencyList().get(v1).get(0).getDestination().equals(v2));
+        assertEquals(graph.getAdjacencyMatrix()[0][1],20);
     }
 
     @Test
     void testAddEdge2() {
-        scenery();
+        graph = new  GraphMatriz<>(5);
         Vertex<String> v1 = new Vertex<>("H");
         Vertex<String> v2 = new Vertex<>("I");
         graph.addVertex(v1);
@@ -81,7 +81,7 @@ public class GraphListTest {
 
     @Test
     void testAddEdge3() {
-        scenery();
+        graph = new  GraphMatriz<>(5);
         Vertex<String> v1 = new Vertex<>("H");
         Vertex<String> v2 = new Vertex<>("I");
         try {
@@ -95,7 +95,7 @@ public class GraphListTest {
 
     @Test
     void testDijkstra() {
-        graph = new GraphList<>();
+        graph = new  GraphMatriz<>(5);
 
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
@@ -122,7 +122,7 @@ public class GraphListTest {
 
     @Test
     void testDijkstra2() {
-        graph = new GraphList<>();
+        graph = new  GraphMatriz<>(5);
 
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
@@ -141,13 +141,13 @@ public class GraphListTest {
         graph.addEdge(v2, v4, 5, 10);
         graph.addEdge(v4, v5, 8, 15);
 
-        assertEquals(graph.dijkstra(v1,v6,"cost").get(0),v6);
+        assertEquals(graph.dijkstra(v1,v6,"cost").size(),0);
 
     }
 
     @Test
     void testDijkstra3() {
-        graph = new GraphList<>();
+        graph = new  GraphMatriz<>(5);
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
         Vertex<String> v3 = new Vertex<>("C");
@@ -165,12 +165,12 @@ public class GraphListTest {
         graph.addEdge(v2, v4, 5, 10);
         graph.addEdge(v4, v5, 8, 15);
 
-        assertEquals(graph.dijkstra(v6,v1,"cost").get(0),v1);
+        assertEquals(graph.dijkstra(v6,v1,"cost"),null);
     }
 
         @Test
     void testBfs() {
-        graph = new GraphList<>();
+        graph = new  GraphMatriz<>(5);
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
         Vertex<String> v3 = new Vertex<>("C");
@@ -189,12 +189,12 @@ public class GraphListTest {
 
         List<Vertex<String>> x= graph.dijkstra(v4,v1,"cost");
 
-        assertEquals(graph.bfs(x, "cost"),15);
+        assertEquals(graph.bfs(x, "cost"),30);
     }
 
     @Test
     void testBfs2() {
-        graph = new GraphList<>();
+        graph = new  GraphMatriz<>(5);
 
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
@@ -214,14 +214,14 @@ public class GraphListTest {
         graph.addEdge(v4, v5, 8, 15);
         List<Vertex<String>> x= graph.dijkstra(v1,v6,"cost");
 
-        assertEquals(graph.bfs(x, "cost"),0);
+        assertEquals(graph.bfs(x, "cost"),-1);
 
     }
 
     @Test
     void testBfs3() {
 
-        graph = new GraphList<>();
+        graph = new  GraphMatriz<>(5);
 
         Vertex<String> v1 = new Vertex<>("A");
         Vertex<String> v2 = new Vertex<>("B");
@@ -239,7 +239,6 @@ public class GraphListTest {
         graph.addEdge(v2, v3, 15, 25);
         graph.addEdge(v2, v4, 5, 10);
         List<Vertex<String>> x= graph.dijkstra(v5,v6,"cost");
-        assertEquals(graph.bfs(x, "cost"),0);
+        assertEquals(graph.bfs(x, "cost"),-1);
     }
-
 }
