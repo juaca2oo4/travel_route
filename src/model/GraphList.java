@@ -23,7 +23,9 @@ public class GraphList<T> {
             throw new IllegalArgumentException("Los vértices de origen y destino deben existir en el grafo.");
         }
         Edge<T> edge = new Edge<>(source, destination, cost, distance);
+        Edge<T> edge2 = new Edge<>(destination, source, cost, distance);
         adjacencyList.get(source).add(edge);
+        adjacencyList.get(destination).add(edge2);
     }
 
     public List<Edge<T>> getEdges(Vertex<T> vertex) {
