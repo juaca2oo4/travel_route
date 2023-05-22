@@ -49,9 +49,12 @@ public class Controller {
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] atributs = line.split(";");
-                Vertex  vertex= new Vertex<>(atributs[0]);
-                graph.addVertex(vertex);
+                String[] atributs = line.split(",");
+                Vertex  vertex1= new Vertex<>(atributs[0]);
+                Vertex  vertex2= new Vertex<>(atributs[1]);
+                int cost = Integer.parseInt(atributs[2]);
+                int distance = Integer.parseInt(atributs[3]);
+                graph.addEdge(vertex1,vertex2,cost,distance);
             }
             fis.close();
         } catch (FileNotFoundException e) {

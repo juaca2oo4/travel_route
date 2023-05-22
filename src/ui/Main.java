@@ -69,11 +69,16 @@ public class Main {
 
                 String rutaProyecto = System.getProperty("user.dir");
                 String rutaCarpetaData = rutaProyecto + File.separator + "data";
-                String nombreArchivo = "data.txt";
+                String nombreArchivo = "cities.txt";
                 File archivo = new File(rutaCarpetaData, nombreArchivo);
-
                 String rutaAbsoluta = archivo.getAbsolutePath();
                 controller.addDataVertexList(rutaAbsoluta);
+
+
+                String nombreArchivoEdge = "connections.txt";
+                File archivo2 = new File(rutaCarpetaData, nombreArchivoEdge);
+                String rutaAbsoluta2 = archivo2.getAbsolutePath();
+                controller.addDataEdgeList(rutaAbsoluta2);
                 System.out.println("se cargo la base de datos de las ciudadeas y sus conexiones de forma exitosa");
 
 
