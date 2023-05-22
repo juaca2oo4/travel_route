@@ -54,8 +54,8 @@ public class Main {
         System.out.println("\n<<<<<AeroLinea >>>>>");
         System.out.println(
                 "1. Cargar de informacion \n" +
-                        "2.   \n" +
-                        "3. xddd \n" +
+                        "2. Ciudades disponibles\n" +
+                        "3. Elegir opciones.  \n" +
                         "0.Exit.");
 
         option =  validateIntegerInput();
@@ -85,17 +85,71 @@ public class Main {
 
 
                 break;
-
             case 2:
-
-
+                String msj = controller.printCities();
+                System.out.println(msj);
 
                 break;
             case 3:
+                int choose;
+                int election;
+                String city1;
+                String city2;
+                System.out.println("1. Grafos con lista de abyacencia\n"+
+                                    "2. Grafos con matriz de abyacencia");
+                choose = reader.nextInt();
+                if(choose  <0 || choose >2){
+                    System.out.println("ingresa una opcion valida");
+                } else{
+                    if(choose ==1 ){
+                        System.out.println("Quieres hacer tu recorrido: \n"+
+                                "1. mejor costo\n"+
+                                "2. mejor distancia");
+                        election = reader.nextInt();
+                        if(election <0 || election > 2){
+                            System.out.println("ingresa una opcion valida");
+                        }else {
+                            System.out.println("Ingresa tu ciudad de partida");
+                            reader.nextLine();
+                            city1 = reader.nextLine().trim();
+
+
+                            System.out.println("Ingresa tu ciudad de destino");
+                            city2 = reader.nextLine().trim();
+
+
+                            System.out.println( controller.bestWayList(city1, city2, election));
+
+
+                        }
+
+
+                    } else {
+                        System.out.println("Quieres hacer tu recorrido:  \n"+
+                                "1. mejor costo\n"+
+                                "2. mejor distancia");
+                        election = reader.nextInt();
+                        if(election <0 || election > 2){
+                            System.out.println("ingresa una opcion valida");
+                        }else {
+                            System.out.println("Ingresa tu ciudad de partida");
+
+                            reader.nextLine();
+                            city1 = reader.nextLine().trim();
+
+                            System.out.println("Ingresa tu ciudad de destino");
+                            city2 = reader.nextLine().trim();
+
+                            System.out.println("El mejor camino es:");
+                            System.out.println(controller.bestWayMatriz(city1,city2,election));
+
+                        }
+
+                    }
+                }
 
 
                 break;
-
             case 0:
                 System.out.println("Exit program.");
                 break;

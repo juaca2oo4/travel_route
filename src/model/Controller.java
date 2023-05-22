@@ -1,8 +1,10 @@
 package model;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Controller {
 
@@ -87,6 +89,64 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public  String bestWayList(String city1, String city2, int type){
+       String msj = "El mejor camino para llegar de " + city1 + " a " + city2+ " son los vuelos de : \n";
+       String factor;
+       if(type ==1){
+           factor ="cost";
+       } else {
+           factor = "distance";
+       }
+
+       Vertex<String>  vertex1 =graph.searchVertex(city1);
+       Vertex<String>  vertex2 =graph.searchVertex(city2);
+       List<Vertex<String>> resultList;
+       resultList =  graph.dijkstra(vertex1,vertex2,factor);
+        msj += printList(resultList);
+
+        int value = graph.bfs(resultList,factor);
+
+        msj += "\n con factor de costo o distancia de :" + value;
+    return  msj;
+    }
+
+    public  String bestWayMatriz(String city1, String city2, int type){
+        String msj = "El mejor camino para llegar de " + city1 + " a " + city2+ " son los vuelos de : \n";
+        String factor;
+        if(type ==1){
+            factor ="cost";
+        } else {
+            factor = "distance";
+        }
+
+        Vertex<String>  vertex1 =graph.searchVertex(city1);
+        Vertex<String>  vertex2 =graph.searchVertex(city2);
+        List<Vertex<String>> resultList;
+        resultList =  graph.dijkstra(vertex1,vertex2,factor);
+        msj += printList(resultList);
+
+        int value = graph.bfs(resultList,factor);
+
+        msj += "\n con factor de costo o distancia de :" + value;
+        return  msj;
+
+    }
+
+    public String  printList(List<Vertex<String>> list) {
+       String msj ="";
+        for (Vertex<String> item : list) {
+            msj += item.getData() + " ";
+        }
+        return  msj;
+    }
+    public  String printCities(){
+       String msj = "Ciudades disponibles: \n";
+        for (Vertex<String> element : graph.getVertices()) {
+            msj += element.getData() + ", ";
+        }
+       return  msj;
     }
 
 }
