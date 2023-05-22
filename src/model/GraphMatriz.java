@@ -3,23 +3,14 @@ package model;
 import java.util.*;;
 
 public class GraphMatriz<T> {
-    private Edge<T>[][] adjacencyMatrix;
+    private List<Edge<T>>[][] adjacencyMatrix;
     private List<Vertex<T>> vertices;
 
     public GraphMatriz(int numVertices) {
-        adjacencyMatrix = new Edge[numVertices][numVertices];
+        adjacencyMatrix = new ArrayList[numVertices][numVertices];
         vertices = new ArrayList<>();
     }
 
-    public boolean addVertex(Vertex<T> vertex) {
-        for(int i=0; i<vertices.size();i++){
-            if(vertices.get(i).getData().equals(vertex.getData())){
-                return false;
-            }
-        }
-        vertices.add(vertex);
-        return true;
-    }
     public Vertex<T> searchVertex(String vertex) {
         for (int i = 0; i < vertices.size(); i++) {
             if(vertices.get(i).getData().equals(vertex)){
@@ -30,15 +21,32 @@ public class GraphMatriz<T> {
         return null;
     }
 
+    public boolean addVertex(Vertex<T> vertex) {
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.get(i).getData().equals(vertex.getData())) {
+                return false;
+            }
+        }
+        vertices.add(vertex);
+        return true;
+    }
+
     public void addEdge(Vertex<T> source, Vertex<T> destination, int cost, int distance) {
         if (!vertices.contains(source) || !vertices.contains(destination)) {
             throw new IllegalArgumentException("Los vértices de origen y destino deben existir en el grafo.");
         }
         int sourceIndex = vertices.indexOf(source);
         int destinationIndex = vertices.indexOf(destination);
-        Edge<T> edge = new Edge<>(source, destination, cost, distance);
-        adjacencyMatrix[sourceIndex][destinationIndex] = edge;
-        adjacencyMatrix[destinationIndex][sourceIndex] = edge;
+
+        if (adjacencyMatrix[sourceIndex][destinationIndex] == null) {
+            adjacencyMatrix[sourceIndex][destinationIndex] = new ArrayList<>();
+        }
+        adjacencyMatrix[sourceIndex][destinationIndex].add(new Edge(source ,destination,cost, distance));
+
+        if (adjacencyMatrix[destinationIndex][sourceIndex] == null) {
+            adjacencyMatrix[destinationIndex][sourceIndex] = new ArrayList<>();
+        }
+        adjacencyMatrix[destinationIndex][sourceIndex].add(new Edge(source ,destination,cost, distance));
     }
 
     public List<Vertex<T>> getVertices() {
@@ -67,10 +75,13 @@ public class GraphMatriz<T> {
 
             for (int j = 0; j < numVertices; j++) {
                 if (!visited[j] && adjacencyMatrix[minVertex][j] != null) {
-                    int currentDistance = distances[minVertex] + (factor.equals("cost") ? adjacencyMatrix[minVertex][j].getCost() : adjacencyMatrix[minVertex][j].getDistance());
-                    if (currentDistance < distances[j]) {
-                        distances[j] = currentDistance;
-                        parents[j] = minVertex;
+                    List<Edge<T>> edges = adjacencyMatrix[minVertex][j];
+                    for (Edge<T> edge : edges) {
+                        int currentDistance = distances[minVertex] + (factor.equals("cost") ? edge.getCost() : edge.getDistance());
+                        if (currentDistance < distances[j]) {
+                            distances[j] = currentDistance;
+                            parents[j] = minVertex;
+                        }
                     }
                 }
             }
@@ -85,7 +96,6 @@ public class GraphMatriz<T> {
 
         return shortestPath;
     }
-
 
     public int bfs(List<Vertex<T>> path, String factor) {
         int totalValue = 0;
@@ -105,10 +115,13 @@ public class GraphMatriz<T> {
             for (int i = 0; i < vertices.size(); i++) {
                 Vertex<T> nextVertex = vertices.get(i);
                 if (path.contains(nextVertex) && !visited.contains(nextVertex) && adjacencyMatrix[currentVertexIndex][i] != null) {
-                    queue.offer(nextVertex);
+                    List<Edge<T>> edges = adjacencyMatrix[currentVertexIndex][i];
+                    for (Edge<T> edge : edges) {
+                        queue.offer(nextVertex);
 
-                    int value = factor.equals("cost") ? adjacencyMatrix[currentVertexIndex][i].getCost() : adjacencyMatrix[currentVertexIndex][i].getDistance();
-                    totalValue += value;
+                        int value = factor.equals("cost") ? edge.getCost() : edge.getDistance();
+                        totalValue += value;
+                    }
                 }
             }
         }
@@ -130,20 +143,18 @@ public class GraphMatriz<T> {
         return minVertex;
     }
 
+    public List<Edge<T>>[][] getAdjacencyMatrix() {
+        return adjacencyMatrix;
+    }
+
+    public void setAdjacencyMatrix(List<Edge<T>>[][] adjacencyMatrix) {
+        this.adjacencyMatrix = adjacencyMatrix;
+    }
 
     public void setVertices(List<Vertex<T>> vertices) {
         this.vertices = vertices;
     }
 
-    public Edge<T>[][] getAdjacencyMatrix() {
-        return adjacencyMatrix;
-    }
-
-    public void setAdjacencyMatrix(Edge<T>[][] adjacencyMatrix) {
-        this.adjacencyMatrix = adjacencyMatrix;
-    }
-
-    
 
     
 }

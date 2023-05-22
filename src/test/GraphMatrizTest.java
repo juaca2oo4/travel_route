@@ -61,7 +61,7 @@ public class GraphMatrizTest {
         graph.addVertex(v2);
         graph.addEdge(v1, v2, 20, 22);
 
-        assertEquals(graph.getAdjacencyMatrix()[0][1].getCost(),20);
+        assertEquals(graph.getAdjacencyMatrix()[0][1].get(0).getCost(),20);
     }
 
     @Test

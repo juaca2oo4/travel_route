@@ -2,8 +2,8 @@ Cucuta,Bogota,100,550
 Bogota,Cali,80,450
 Cali,Mexico,90,350
 Mexico,Cancun,70,400
-Guadalajara,Monterry,500,2700
-Monterry,Guatemala,400,2400
+Guadalajara,Monterrey,500,2700
+Monterrey,Guatemala,400,2400
 Guatemala,Salvador,600,3500
 Salvador,Tegucigalpa,550,3200
 Tegucigalpa,Managua,450,2400
@@ -26,8 +26,8 @@ Lima,Arequipa,350,1500
 Arequipa,Trujillo,100,400
 Trujillo,Chiclayo,400,2100
 Chiclayo,Quito,450,2300
-Quito,Guayaquill,350,1600
-Guayaquill,Cuenca,550,3000
+Quito,Guayaquil,350,1600
+Guayaquil,Cuenca,550,3000
 Cuenca,Cartagena,350,1900
 Cartagena,Medellin,400,2100
 Medellin,Barranquilla,300,1400
@@ -38,11 +38,11 @@ Iquique,Valdivia,350,1800
 Valdivia,Temuco,550,3200
 Temuco,Antofagasta,450,2500
 Antofagasta,Valparaiso,500,2700
-Valparaiso, Serena,400,2000
+Valparaiso,Serena,400,2000
 Serena,Osorno,600,3400
 Osorno,Maturin,350,1800
 Maturin,Curico,400,2000
-Caruco,Arenas,600,3300
+Curico,Arenas,600,3300
 Arenas,Rosario,800,4500
 Rosario,Valledupar,200,1000
 Valledupar,Sucre,250,1200
