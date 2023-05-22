@@ -55,12 +55,3 @@ Guadalajara,Varadero,450,2500
 Guadalajara,Santiago,550,2800
 Guadalajara,Príncipe,750,4000
 Monterrey,Habana,400,2200
-Monterrey,Varadero,450,2400
-Monterrey,Santiago,550,2700
-Monterrey,Príncipe,750,3900
-Habana,Varadero,50,150
-Habana,Santiago,150,850
-Habana,Príncipe,350,2000
-Varadero,Santiago,100,700
-Varadero,Príncipe,300,1800
-Santiago,Príncipe,250,1500

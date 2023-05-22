@@ -53,10 +53,10 @@ public class Main {
         int option = 0;
         System.out.println("\n<<<<<AeroLinea >>>>>");
         System.out.println(
-                "1. Cargar informacion de" +
+                "1. Cargar de informacion \n" +
                         "2. xd  \n" +
                         "3. xddd \n" +
-                        "0.  Exit.");
+                        "0.Exit.");
 
         option =  validateIntegerInput();
         return option;
@@ -72,13 +72,14 @@ public class Main {
                 String nombreArchivo = "cities.txt";
                 File archivo = new File(rutaCarpetaData, nombreArchivo);
                 String rutaAbsoluta = archivo.getAbsolutePath();
-                controller.addDataVertexList(rutaAbsoluta);
+                controller.addDataVertex(rutaAbsoluta);
 
 
                 String nombreArchivoEdge = "connections.txt";
                 File archivo2 = new File(rutaCarpetaData, nombreArchivoEdge);
                 String rutaAbsoluta2 = archivo2.getAbsolutePath();
                 controller.addDataEdgeList(rutaAbsoluta2);
+                controller.addDataEdgeMatriz(rutaAbsoluta2);
                 System.out.println("se cargo la base de datos de las ciudadeas y sus conexiones de forma exitosa");
 
 

@@ -20,6 +20,15 @@ public class GraphMatriz<T> {
         vertices.add(vertex);
         return true;
     }
+    public Vertex<T> searchVertex(String vertex) {
+        for (int i = 0; i < vertices.size(); i++) {
+            if(vertices.get(i).getData().equals(vertex)){
+                return vertices.get(i);
+            }
+        }
+
+        return null;
+    }
 
     public void addEdge(Vertex<T> source, Vertex<T> destination, int cost, int distance) {
         if (!vertices.contains(source) || !vertices.contains(destination)) {

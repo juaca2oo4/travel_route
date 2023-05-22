@@ -24,7 +24,7 @@ public class Controller {
     }
 
 
-    public void addDataVertexList(String archivo) {
+    public void addDataVertex(String archivo) {
         File file = new File(archivo);
         try {
             FileInputStream fis = new FileInputStream(file);
@@ -32,8 +32,9 @@ public class Controller {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] atributs = line.split(" ");
-                Vertex  vertex= new Vertex<>(atributs[0]);
+                Vertex<String>  vertex= new Vertex<>(atributs[0]);
                 graph.addVertex(vertex);
+                graph1.addVertex(vertex);
             }
             fis.close();
         } catch (FileNotFoundException e) {
@@ -50,11 +51,35 @@ public class Controller {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] atributs = line.split(",");
-                Vertex  vertex1= new Vertex<>(atributs[0]);
-                Vertex  vertex2= new Vertex<>(atributs[1]);
+                Vertex<String>  vertex1= graph.searchVertex(atributs[0]);
+                Vertex<String>  vertex2= graph.searchVertex(atributs[1]);
                 int cost = Integer.parseInt(atributs[2]);
                 int distance = Integer.parseInt(atributs[3]);
+
                 graph.addEdge(vertex1,vertex2,cost,distance);
+
+            }
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addDataEdgeMatriz(String archivo) {
+        File file = new File(archivo);
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] atributs = line.split(",");
+                Vertex<String>  vertex1= graph1.searchVertex(atributs[0]);
+                Vertex<String>  vertex2= graph1.searchVertex(atributs[1]);
+                int cost = Integer.parseInt(atributs[2]);
+                int distance = Integer.parseInt(atributs[3]);
+
+                graph1.addEdge(vertex1,vertex2,cost,distance);
             }
             fis.close();
         } catch (FileNotFoundException e) {

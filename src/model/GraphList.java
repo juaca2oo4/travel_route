@@ -17,6 +17,15 @@ public class GraphList<T> {
         adjacencyList.putIfAbsent(vertex, new ArrayList<>());
         return true;
     }
+    public Vertex<T> searchVertex(String vertex) {
+        for (Vertex<T> existingVertex : adjacencyList.keySet()) {
+            if (existingVertex.getData().equals(vertex)) {
+                return existingVertex;
+            }
+        }
+
+        return null;
+    }
 
     public void addEdge(Vertex<T> source, Vertex<T> destination, int cost, int distance) {
         if (!adjacencyList.containsKey(source) || !adjacencyList.containsKey(destination)) {
