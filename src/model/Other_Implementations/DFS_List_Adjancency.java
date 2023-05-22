@@ -2,11 +2,11 @@ package model.Other_Implementations;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DFS<T> {
+public class DFS_List_Adjancency<T> {
     private ArrayList<DFS_vertex<T>> vertices;
 
     int distance;
-    public DFS() {
+    public DFS_List_Adjancency() {
         vertices = new ArrayList<>();
     }
     public void addVertex(T element) {
