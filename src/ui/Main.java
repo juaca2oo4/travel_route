@@ -54,7 +54,7 @@ public class Main {
         System.out.println("\n<<<<<AeroLinea >>>>>");
         System.out.println(
                 "1. Cargar de informacion \n" +
-                        "2. xd  \n" +
+                        "2.   \n" +
                         "3. xddd \n" +
                         "0.Exit.");
 
