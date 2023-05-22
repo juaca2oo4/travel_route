@@ -61,7 +61,7 @@ public class GraphMatrizTest {
         graph.addVertex(v2);
         graph.addEdge(v1, v2, 20, 22);
 
-        assertEquals(graph.getAdjacencyMatrix()[0][1],20);
+        assertEquals(graph.getAdjacencyMatrix()[0][1].getCost(),20);
     }
 
     @Test
@@ -141,7 +141,7 @@ public class GraphMatrizTest {
         graph.addEdge(v2, v4, 5, 10);
         graph.addEdge(v4, v5, 8, 15);
 
-        assertEquals(graph.dijkstra(v1,v6,"cost").size(),0);
+        assertEquals(graph.dijkstra(v1,v6,"cost"),null);
 
     }
 
@@ -189,7 +189,7 @@ public class GraphMatrizTest {
 
         List<Vertex<String>> x= graph.dijkstra(v4,v1,"cost");
 
-        assertEquals(graph.bfs(x, "cost"),30);
+        assertEquals(graph.bfs(x, "cost"),15);
     }
 
     @Test
