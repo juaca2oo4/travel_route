@@ -97,7 +97,6 @@ public class GraphList<T> {
         Queue<Vertex<T>> queue = new LinkedList<>();
 
         queue.offer(path.get(0));
-
         while (!queue.isEmpty()) {
             Vertex<T> currentVertex = queue.poll();
             visited.add(currentVertex);
@@ -107,13 +106,12 @@ public class GraphList<T> {
                 Vertex<T> nextVertex = edge.getDestination();
                 if (path.contains(nextVertex) && !visited.contains(nextVertex)) {
                     queue.offer(nextVertex);
-                    
                     int value = factor.equals("cost") ? edge.getCost() : edge.getDistance();
                     totalValue += value;
+                    break;
                 }
             }
         }
-
         return totalValue;
     }
 

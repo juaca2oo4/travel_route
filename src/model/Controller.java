@@ -6,7 +6,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-public class Controller {
+public class  Controller {
 
    private GraphList<String> graph;
    private GraphMatriz<String> graph1 ;
