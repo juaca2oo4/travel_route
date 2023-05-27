@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="235.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazgrafica.HelloController">
+   <children>
+      <Label layoutX="13.0" layoutY="50.0" prefHeight="48.0" prefWidth="496.0" text="Welcome to Travel-Route">
+         <font>
+            <Font name="Tahoma Bold" size="38.0" />
+         </font>
+      </Label>
+      <Button fx:id="loadDB_BTN" layoutX="31.0" layoutY="134.0" mnemonicParsing="false" onAction="#loadDB" prefHeight="48.0" prefWidth="128.0" text="Load DataBase">
+         <font>
+            <Font name="Tahoma Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="seeCitiesBTN" layoutX="197.0" layoutY="134.0" mnemonicParsing="false" onAction="#seeCities" prefHeight="48.0" prefWidth="128.0" text="See cities">
+         <font>
+            <Font name="Tahoma Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="optionsBTN" layoutX="358.0" layoutY="134.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="128.0" text="Choose options">
+         <font>
+            <Font name="Tahoma Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

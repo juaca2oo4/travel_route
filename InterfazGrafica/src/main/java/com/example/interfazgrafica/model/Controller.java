@@ -1,21 +1,18 @@
-package model;
+package com.example.interfazgrafica.model;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class  Controller {
 
-   private GraphList<String> graph;
-   private GraphMatriz<String> graph1 ;
+    private GraphList<String> graph;
+    private GraphMatriz<String> graph1 ;
 
 
-   public Controller(){
-       graph = new GraphList<>();
+    public Controller(){
+        graph = new GraphList<>();
         graph1 = new GraphMatriz<>(50);
-   }
+    }
 
     public GraphList<String> getGraph() {
         return graph;
@@ -34,7 +31,7 @@ public class  Controller {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] atributs = line.split(" ");
-                Vertex<String>  vertex= new Vertex<>(atributs[0]);
+                Vertex<String> vertex= new Vertex<>(atributs[0]);
                 graph.addVertex(vertex);
                 graph1.addVertex(vertex);
             }
@@ -92,24 +89,24 @@ public class  Controller {
     }
 
     public  String bestWayList(String city1, String city2, int type){
-       String msj = "El mejor camino para llegar de " + city1 + " a " + city2+ " son los vuelos de : \n";
-       String factor;
-       if(type ==1){
-           factor ="cost";
-       } else {
-           factor = "distance";
-       }
+        String msj = "El mejor camino para llegar de " + city1 + " a " + city2+ " son los vuelos de : \n";
+        String factor;
+        if(type ==1){
+            factor ="cost";
+        } else {
+            factor = "distance";
+        }
 
-       Vertex<String>  vertex1 =graph.searchVertex(city1);
-       Vertex<String>  vertex2 =graph.searchVertex(city2);
-       List<Vertex<String>> resultList;
-       resultList =  graph.dijkstra(vertex1,vertex2,factor);
+        Vertex<String>  vertex1 =graph.searchVertex(city1);
+        Vertex<String>  vertex2 =graph.searchVertex(city2);
+        List<Vertex<String>> resultList;
+        resultList =  graph.dijkstra(vertex1,vertex2,factor);
         msj += printList(resultList);
 
         int value = graph.bfs(resultList,factor);
 
         msj += "\n con factor de costo o distancia de :" + value;
-    return  msj;
+        return  msj;
     }
 
     public  String bestWayMatriz(String city1, String city2, int type){
@@ -135,18 +132,21 @@ public class  Controller {
     }
 
     public String  printList(List<Vertex<String>> list) {
-       String msj ="";
+        String msj ="";
         for (Vertex<String> item : list) {
             msj += item.getData() + " ";
         }
         return  msj;
     }
-    public String printCities(){
-       String msj = "Ciudades disponibles: \n";
-        for (Vertex<String> element : graph.getVertices()) {
-            msj += element.getData() + ", ";
+    public  String printCities(){
+        String msj = "";
+        for (int i=0; i<graph.getVertices().size(); i++){
+            if(i%5==0){
+                msj+="\n";
+            }
+            msj+= graph.getVertices().get(i).getData() + ", ";
         }
-       return  msj;
+        return msj;
     }
 
 }
