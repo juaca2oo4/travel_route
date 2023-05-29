@@ -6,14 +6,14 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazgrafica.Cities">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazgrafica.SeeCitiesController">
    <children>
       <Label layoutX="168.0" layoutY="33.0" text="The possible cities are:">
          <font>
             <Font name="Tahoma Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="citiesLB" layoutX="92.0" layoutY="62.0" prefHeight="251.0" prefWidth="417.0" textAlignment="CENTER">
+      <Label fx:id="citiesLB" layoutX="106.0" layoutY="62.0" prefHeight="251.0" prefWidth="417.0" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

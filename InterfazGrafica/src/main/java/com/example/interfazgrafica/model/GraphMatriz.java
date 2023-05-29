@@ -99,6 +99,8 @@ public class GraphMatriz<T> {
 
     public int bfs(List<Vertex<T>> path, String factor) {
         int totalValue = 0;
+        int aux=Integer.MAX_VALUE;
+        Vertex<T> auxiliarV=null;
         Set<Vertex<T>> visited = new HashSet<>();
         Queue<Vertex<T>> queue = new LinkedList<>();
 
@@ -117,15 +119,21 @@ public class GraphMatriz<T> {
                 if (path.contains(nextVertex) && !visited.contains(nextVertex) && adjacencyMatrix[currentVertexIndex][i] != null) {
                     List<Edge<T>> edges = adjacencyMatrix[currentVertexIndex][i];
                     for (Edge<T> edge : edges) {
-                        queue.offer(nextVertex);
-
                         int value = factor.equals("cost") ? edge.getCost() : edge.getDistance();
-                        totalValue += value;
+                        if (value < aux) {
+                            aux = value;
+                            auxiliarV = nextVertex;
+                        }
                     }
                 }
             }
+            if (auxiliarV != null) {
+                queue.offer(auxiliarV);
+                totalValue += aux;
+                aux = Integer.MAX_VALUE;
+                auxiliarV = null;
+            }
         }
-
         return totalValue;
     }
 
@@ -139,7 +147,6 @@ public class GraphMatriz<T> {
                 minVertex = i;
             }
         }
-
         return minVertex;
     }
 

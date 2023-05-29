@@ -118,7 +118,7 @@ public class Main {
                             city2 = reader.nextLine().trim();
 
 
-                            System.out.println( controller.bestWayList(city1, city2, election));
+                            System.out.println(controller.bestWayList(city1, city2, election));
 
 
                         }

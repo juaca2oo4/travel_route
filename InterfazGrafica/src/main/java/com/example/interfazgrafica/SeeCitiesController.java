@@ -11,9 +11,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Cities implements Initializable{
+public class SeeCitiesController implements Initializable{
 
-    public static String information="";
+    public static String information=Controller.getInstance().printCities();
 
     @FXML
     private Button backToMenuBTN;

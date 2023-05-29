@@ -94,6 +94,8 @@ public class GraphList<T> {
 
     public int bfs(List<Vertex<T>> path, String factor) {
         int totalValue = 0;
+        int aux=Integer.MAX_VALUE;
+        Vertex<T> auxiliarV=null;
         Set<Vertex<T>> visited = new HashSet<>();
         Queue<Vertex<T>> queue = new LinkedList<>();
 
@@ -101,16 +103,22 @@ public class GraphList<T> {
         while (!queue.isEmpty()) {
             Vertex<T> currentVertex = queue.poll();
             visited.add(currentVertex);
-
             List<Edge<T>> edges = getEdges(currentVertex);
             for (Edge<T> edge : edges) {
                 Vertex<T> nextVertex = edge.getDestination();
                 if (path.contains(nextVertex) && !visited.contains(nextVertex)) {
-                    queue.offer(nextVertex);
                     int value = factor.equals("cost") ? edge.getCost() : edge.getDistance();
-                    totalValue += value;
-                    break;
+                    if (value<aux) {
+                        aux = value;
+                        auxiliarV=nextVertex;
+                    }
                 }
+            }
+            if(auxiliarV!=null) {
+                queue.offer(auxiliarV);
+                totalValue += aux;
+                aux = Integer.MAX_VALUE;
+                auxiliarV = null;
             }
         }
         return totalValue;

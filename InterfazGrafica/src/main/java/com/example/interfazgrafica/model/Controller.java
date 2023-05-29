@@ -1,5 +1,7 @@
 package com.example.interfazgrafica.model;
 
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.util.List;
 
@@ -7,9 +9,15 @@ public class  Controller {
 
     private GraphList<String> graph;
     private GraphMatriz<String> graph1 ;
+    private static Controller instance = null;
 
-
-    public Controller(){
+    public static Controller getInstance() { //Mecanismo para crear la instancia de la clase.
+        if (instance == null) {
+            instance = new Controller(); //Solo puedo crear una instancia (Por ello el if) (Solo una lista de contactos)
+        }
+        return instance;
+    }
+    private Controller(){
         graph = new GraphList<>();
         graph1 = new GraphMatriz<>(50);
     }
@@ -88,15 +96,8 @@ public class  Controller {
         }
     }
 
-    public  String bestWayList(String city1, String city2, int type){
-        String msj = "El mejor camino para llegar de " + city1 + " a " + city2+ " son los vuelos de : \n";
-        String factor;
-        if(type ==1){
-            factor ="cost";
-        } else {
-            factor = "distance";
-        }
-
+    public  String bestWayList(String city1, String city2, String factor){
+        String msj = "The best way to arrive from " + city1 + " to " + city2+ " are the flights of : \n";
         Vertex<String>  vertex1 =graph.searchVertex(city1);
         Vertex<String>  vertex2 =graph.searchVertex(city2);
         List<Vertex<String>> resultList;
@@ -105,28 +106,21 @@ public class  Controller {
 
         int value = graph.bfs(resultList,factor);
 
-        msj += "\n con factor de costo o distancia de :" + value;
+        msj += "\nWith factor of cost or distance:" + value;
         return  msj;
     }
 
-    public  String bestWayMatriz(String city1, String city2, int type){
-        String msj = "El mejor camino para llegar de " + city1 + " a " + city2+ " son los vuelos de : \n";
-        String factor;
-        if(type ==1){
-            factor ="cost";
-        } else {
-            factor = "distance";
-        }
-
-        Vertex<String>  vertex1 =graph.searchVertex(city1);
-        Vertex<String>  vertex2 =graph.searchVertex(city2);
+    public  String bestWayMatriz(String city1, String city2, String factor){
+        String msj = "The best way to arrive from " + city1 + " to " + city2+ " are the flights of : \n";
+        Vertex<String>  vertex1 =graph1.searchVertex(city1);
+        Vertex<String>  vertex2 =graph1.searchVertex(city2);
         List<Vertex<String>> resultList;
-        resultList =  graph.dijkstra(vertex1,vertex2,factor);
+        resultList =  graph1.dijkstra(vertex1,vertex2,factor);
         msj += printList(resultList);
 
-        int value = graph.bfs(resultList,factor);
+        int value = graph1.bfs(resultList,factor);
 
-        msj += "\n con factor de costo o distancia de :" + value;
+        msj += "\nWith factor of cost or distance: " + value;
         return  msj;
 
     }
@@ -134,8 +128,9 @@ public class  Controller {
     public String  printList(List<Vertex<String>> list) {
         String msj ="";
         for (Vertex<String> item : list) {
-            msj += item.getData() + " ";
+            msj += item.getData() + " - ";
         }
+        msj=msj.substring(0,msj.length()-3);
         return  msj;
     }
     public  String printCities(){

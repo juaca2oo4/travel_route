@@ -13,9 +13,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HelloController {
-
-    Controller controller = new Controller();
-    Cities cities = new Cities();
     static boolean isLoaded;
 
     @FXML
@@ -34,20 +31,19 @@ public class HelloController {
             String nombreArchivo = "cities.txt";
             File archivo = new File(rutaCarpetaData, nombreArchivo);
             String rutaAbsoluta = archivo.getAbsolutePath();
-            controller.addDataVertex(rutaAbsoluta);
+            Controller.getInstance().addDataVertex(rutaAbsoluta);
 
             String nombreArchivoEdge = "connections.txt";
             File archivo2 = new File(rutaCarpetaData, nombreArchivoEdge);
             String rutaAbsoluta2 = archivo2.getAbsolutePath();
-            controller.addDataEdgeList(rutaAbsoluta2);
-            controller.addDataEdgeMatriz(rutaAbsoluta2);
+            Controller.getInstance().addDataEdgeList(rutaAbsoluta2);
+            Controller.getInstance().addDataEdgeMatriz(rutaAbsoluta2);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Successfully importation");
             alert.setContentText("The data base has been loaded successfully");
             alert.showAndWait();
 
-            Cities.information = controller.printCities();
             isLoaded = true;
         }
         else{
@@ -61,6 +57,20 @@ public class HelloController {
     void seeCities(ActionEvent event) {
         if(isLoaded){
             HelloApplication.openWindow("Cities.fxml"); //Esta me abre el otro fxml, junto con su controlador.
+            Stage stage = (Stage) seeCitiesBTN.getScene().getWindow(); //Literalmente, me cierro a mi mismo.
+            stage.close();
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Caution");
+            alert.setContentText("The data base has not been loaded");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    void chooseOption(ActionEvent event){
+        if(isLoaded){
+            HelloApplication.openWindow("selectOption.fxml"); //Esta me abre el otro fxml, junto con su controlador.
             Stage stage = (Stage) seeCitiesBTN.getScene().getWindow(); //Literalmente, me cierro a mi mismo.
             stage.close();
         }

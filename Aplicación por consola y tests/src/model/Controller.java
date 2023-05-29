@@ -121,24 +121,25 @@ public class  Controller {
             factor = "distance";
         }
 
-        Vertex<String>  vertex1 =graph.searchVertex(city1);
-        Vertex<String>  vertex2 =graph.searchVertex(city2);
+        Vertex<String>  vertex1 =graph1.searchVertex(city1);
+        Vertex<String>  vertex2 =graph1.searchVertex(city2);
         List<Vertex<String>> resultList;
-        resultList =  graph.dijkstra(vertex1,vertex2,factor);
+        resultList =  graph1.dijkstra(vertex1,vertex2,factor);
         msj += printList(resultList);
 
-        int value = graph.bfs(resultList,factor);
+        int value = graph1.bfs(resultList,factor);
 
-        msj += "\n con factor de costo o distancia de :" + value;
+        msj += "\ncon factor de costo o distancia de : " + value;
         return  msj;
 
     }
 
     public String  printList(List<Vertex<String>> list) {
-       String msj ="";
+        String msj ="";
         for (Vertex<String> item : list) {
-            msj += item.getData() + " ";
+            msj += item.getData() + " - ";
         }
+        msj=msj.substring(0,msj.length()-3);
         return  msj;
     }
     public String printCities(){

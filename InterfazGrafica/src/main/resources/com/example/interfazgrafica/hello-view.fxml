@@ -22,7 +22,7 @@
             <Font name="Tahoma Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="optionsBTN" layoutX="358.0" layoutY="134.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="128.0" text="Choose options">
+      <Button fx:id="optionsBTN" layoutX="358.0" layoutY="134.0" mnemonicParsing="false" onAction="#chooseOption" prefHeight="48.0" prefWidth="128.0" text="Choose options">
          <font>
             <Font name="Tahoma Bold" size="14.0" />
          </font>
