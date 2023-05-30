@@ -1,9 +1,11 @@
+package model.Other_Implementations.Kruskal;
+
 import java.util.Objects;
 
-public class Vertex<T> {
+public class Kruskal_Vertex<T> {
     private T value;
 
-    public Vertex(T value) {
+    public Kruskal_Vertex(T value) {
         this.value = value;
     }
 
@@ -19,7 +21,7 @@ public class Vertex<T> {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Vertex<?> vertex = (Vertex<?>) obj;
+        Kruskal_Vertex<?> vertex = (Kruskal_Vertex<?>) obj;
         return Objects.equals(value, vertex.value);
     }
 

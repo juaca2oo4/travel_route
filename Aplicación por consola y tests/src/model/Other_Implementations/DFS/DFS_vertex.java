@@ -1,4 +1,4 @@
-package model.Other_Implementations;
+package model.Other_Implementations.DFS;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
 package test;
 
-import model.Other_Implementations.DFS_List_Adjancency;
-import model.Other_Implementations.DFS_Matrix_Adjacency;
-import model.Other_Implementations.DFS_vertex;
+import model.Other_Implementations.DFS.DFS_List_Adjacency;
+import model.Other_Implementations.DFS.DFS_Matrix_Adjacency;
+import model.Other_Implementations.DFS.DFS_vertex;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class DFSTest {
     /*--------------------Tests DFS (Recorrido)-------------*/
     @Test
     public void testRouteDFS() {
-        DFS_List_Adjancency<Integer> dfs = new DFS_List_Adjancency<>();
+        DFS_List_Adjacency<Integer> dfs = new DFS_List_Adjacency<>();
         // Arrange (Agrego vertices y aristas)
         dfs.addVertex(1);
         dfs.addVertex(2);
@@ -53,7 +53,7 @@ public class DFSTest {
     }
     @Test
     public void testDFSRouteWithoutEdges() {
-        DFS_List_Adjancency<Character> dfs = new DFS_List_Adjancency<>();
+        DFS_List_Adjacency<Character> dfs = new DFS_List_Adjacency<>();
         //Arrange
         dfs.addVertex('K');
         dfs.addVertex('L');
@@ -81,7 +81,7 @@ public class DFSTest {
     /*--------------------Tests DFS GetTrees-------------*/
     @Test
     public void testDFSGetTrees() {
-        DFS_List_Adjancency<Integer> dfs = new DFS_List_Adjancency<>();
+        DFS_List_Adjacency<Integer> dfs = new DFS_List_Adjacency<>();
         //Arrange (Agrego vertices y aristas)
         dfs.addVertex(1);
         dfs.addVertex(2);
@@ -105,7 +105,7 @@ public class DFSTest {
 
     @Test
     public void testDFSGetMoreThanTree() {
-        DFS_List_Adjancency<Integer> dfs = new DFS_List_Adjancency<>();
+        DFS_List_Adjacency<Integer> dfs = new DFS_List_Adjacency<>();
         // Arrange (agrego aristas y vertices)
         dfs.addVertex(2);
         dfs.addVertex(3);
@@ -124,7 +124,7 @@ public class DFSTest {
     }
     @Test
     public void graphDFSTreesWithoutEdges() {
-        DFS_List_Adjancency<Character> dfs = new DFS_List_Adjancency<>();
+        DFS_List_Adjacency<Character> dfs = new DFS_List_Adjacency<>();
         dfs.addVertex('W');
         dfs.addVertex('X');
         dfs.addVertex('Y');
