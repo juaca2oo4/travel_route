@@ -6,5 +6,7 @@ La carpeta "Interfaz grafica corresponde a la implementación del programa con u
 Integrantes:
 
 Santiago Hernandez A00382538  
+
 Juan Jose Barrera A00394876
+
 Sergio Florez A00396046
